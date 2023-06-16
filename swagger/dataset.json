@@ -1,0 +1,935 @@
+{
+  "paths": {
+    "/dataset/2/{account_id}/{dataset_id}": {
+      "get": {
+        "tags": [
+          "Dataset"
+        ],
+        "summary": "Get an existing dataset record",
+        "description": "Get an existing dataset Information",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dataset_id",
+            "in": "path",
+            "description": "The <<glossary:Dataset ID>> is a unique identifier for each dataset",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "Name",
+            "in": "query",
+            "description": "Key column value of the dataset. It is a unique string that identifies the record you are trying to fetch from the dataset. It is a mandatory parameter<br />",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Dataset Instance by Dataset ID(key field)"
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Dataset"
+        ],
+        "summary": "Delete a specific dataset record",
+        "description": "This endpoint lets you delete a specific dataset record.<br /> Please make a note of the following request payload details to delete a dataset record.<br /> Name - `Key` column value of the dataset. It is a unique string that identifies the record you are trying to delete in the dataset. It is a mandatory parameter<br />",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dataset_id",
+            "in": "path",
+            "description": "The <<glossary:Dataset ID>> is a unique identifier for each dataset",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request payload to delete a specific dataset record <br /> Name - `Key` column value of the dataset. It is a unique string that identifies the record you are trying to delete in the dataset. It is a mandatory parameter<br />",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Name": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "Name": "Blackwidow"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Deleted the dataset record successfully"
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "Dataset"
+        ],
+        "summary": "Update an existing dataset record",
+        "description": "This endpoint lets you update an existing dataset record. <br /> Please make a note of the following request payload details to update a dataset record. <br /> Name - `Key` column value of the dataset. It is a unique string that identifies the record you are trying to update in the dataset. It is a mandatory parameter<br /> Field1 - Value to be updated in the `Field1` column in the dataset",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dataset_id",
+            "in": "path",
+            "description": "The <<glossary:Dataset ID>> is a unique identifier for each dataset",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request payload to update a dataset record <br /> Name - `Key` column value of the dataset. It is a unique string that identifies the record you are trying to update in the dataset. It is a mandatory parameter<br /> Field1 - Value to be updated in the `Field1` column in the dataset",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true,
+                "properties": {
+                  "Name": {
+                    "type": "string"
+                  },
+                  "Field1": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "Name": 10,
+                  "Field1": "Blackwidow"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated the dataset record successfully"
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Dataset"
+        ],
+        "summary": "Create a new dataset record",
+        "description": "This endpoint lets you create a new dataset record. <br /> Please make a note of the request payload details to create a new dataset record <br /> Name - `Key` column value of the dataset. It is a unique string that identifies the record you are trying to create in the dataset. It is a mandatory parameter<br /> Field1 - Value to be added in the `Field1` column in the dataset",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dataset_id",
+            "in": "path",
+            "description": "The <<glossary:Dataset ID>> is a unique identifier for each dataset",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Request payload to create a new dataset record <br /> Name - `Key` column value of the dataset. It is a unique string that identifies the record you are trying to create in the dataset. It is a mandatory parameter<br /> Field1 - Value to be added in the `Field1` column in the dataset",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true,
+                "properties": {
+                  "Name": {
+                    "type": "string"
+                  },
+                  "Field1": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "Name": 10,
+                  "Field1": "Blackwidow"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Added the dataset record successfully"
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/dataset/2/{account_id}/{dataset_id}/list": {
+      "get": {
+        "tags": [
+          "Dataset"
+        ],
+        "summary": "Get dataset records",
+        "description": "This endpoint lets you retrieve a specific dataset's records, including dataset fields and respective values.",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dataset_id",
+            "in": "path",
+            "description": "The <<glossary:Dataset ID>> is a unique identifier for each dataset, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "This is the search filter string, and is an optional parameter.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page_number",
+            "in": "query",
+            "description": "This is the specific page number of an item list and is an optional parameter. The page number can be specified as 1, 2, 3, etc. Default value is 1.",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "description": "The number of items that can be listed in a page result and is an optional parameter. Default value is 10.",
+            "required": false,
+            "schema": {
+              "default": 10,
+              "minimum": 10,
+              "maximum": 50,
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "This request successfully retrieves your dataset's fields and values.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GRIDDataResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/dataset/2/{account_id}/{dataset_id}/{row_id}/{field_id}/attachment": {
+      "post": {
+        "tags": [
+          "Dataset"
+        ],
+        "summary": "Add attachment",
+        "description": "This endpoint lets you upload file to an attachment field in row.",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dataset_id",
+            "in": "path",
+            "description": "The <<glossary:Dataset ID>> is a unique identifier for each dataset, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "row_id",
+            "in": "path",
+            "description": "The <<glossary:Row ID>> is a unique identifier for each row, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "description": "The <<glossary:Field ID>> is a unique identifier for each field, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The file to upload.",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "This request successfully adds a new attachment to your dataset field.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchUpdateResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/dataset/2/{account_id}/{dataset_id}/{row_id}/{field_id}/image": {
+      "post": {
+        "tags": [
+          "Dataset"
+        ],
+        "summary": "Add image file",
+        "description": "This endpoint lets you upload image to field in row.",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dataset_id",
+            "in": "path",
+            "description": "The <<glossary:Dataset ID>> is a unique identifier for each dataset, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "row_id",
+            "in": "path",
+            "description": "The <<glossary:Row ID>> is a unique identifier for each row, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "field_id",
+            "in": "path",
+            "description": "The <<glossary:Field ID>> is a unique identifier for each field, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The file to upload.",
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "This request successfully adds a new image file to your dataset field.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchUpdateResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    },
+    "/dataset/2/{account_id}/{dataset_id}/aggregation": {
+      "get": {
+        "tags": [
+          "Dataset"
+        ],
+        "summary": "Get dataset field's aggregation details.",
+        "description": "This endpoint lets you retrieve dataset's fields aggregation details.",
+        "parameters": [
+          {
+            "name": "account_id",
+            "in": "path",
+            "description": "This is your Kissflow <<glossary:Account ID>>, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "dataset_id",
+            "in": "path",
+            "description": "The <<glossary:Dataset ID>> is a unique identifier for each dataset, and is a mandatory parameter.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "This is the search filter string, and is an optional parameter.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page_number",
+            "in": "query",
+            "description": "This is the specific page number of an item list and is an optional parameter. The page number can be specified as 1, 2, 3, etc. Default value is 1.",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "description": "The number of items that can be listed in a page result and is an optional parameter. Default value is 10.",
+            "required": false,
+            "schema": {
+              "default": 10,
+              "minimum": 10,
+              "maximum": 50,
+              "type": "integer"
+            }
+          },
+          {
+            "name": "field_ids",
+            "in": "query",
+            "description": "List of field IDs under the current dataset whose aggregation details are to be fetched specifically. It is an optional parameter and when not specified, aggregation for all the dataset fields is returned by default. The field IDs must be comma-separated, hence the query param should be properly URL encoded.",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get dataset's fields aggregation details."
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/Forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          }
+        },
+        "security": [
+          {
+            "X-Api-Key": []
+          },
+          {
+            "X-Access-Key-Id": [],
+            "X-Access-Key-Secret": []
+          }
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "Dataset",
+    "version": "4.0.0",
+    "description": "API around Dataset & DatasetView functionality",
+    "contact": {
+      "email": "engg@kissflow.com"
+    }
+  },
+  "tags": [
+    {
+      "name": "Dataset",
+      "description": "Retrieve your dataset's values or update multiple fields in your dataset using this API endpoint.",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "https://kissflow.com"
+      }
+    }
+  ],
+  "openapi": "3.0.3",
+  "components": {
+    "schemas": {
+      "Field": {
+        "type": "object",
+        "properties": {
+          "Type": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "IsSystemField": {
+            "type": "boolean"
+          },
+          "Id": {
+            "type": "string"
+          }
+        }
+      },
+      "System": {
+        "type": "object",
+        "properties": {
+          "Name": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id"
+        ]
+      },
+      "LookupResponseOfAInstance": {
+        "type": "object",
+        "properties": {
+          "PONumber": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "TotalPrice": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "RequestedBy": {
+            "$ref": "#/components/schemas/System"
+          }
+        }
+      },
+      "LookupResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LookupResponseOfAInstance"
+            }
+          }
+        }
+      },
+      "UpdateDictOfAInstance": {
+        "type": "object",
+        "properties": {
+          "PONumber": {
+            "type": "string"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "TotalPrice": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "RequestedBy": {
+            "$ref": "#/components/schemas/System"
+          }
+        },
+        "required": [
+          "Name",
+          "_id"
+        ]
+      },
+      "UpdateDictOfAInstanceResponse": {
+        "type": "object",
+        "properties": {
+          "_modified_by": {
+            "$ref": "#/components/schemas/System"
+          },
+          "PONumber": {
+            "type": "string"
+          },
+          "_modified_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "Name": {
+            "type": "string"
+          },
+          "TotalPrice": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "RequestedBy": {
+            "$ref": "#/components/schemas/System"
+          }
+        },
+        "required": [
+          "Name",
+          "_id"
+        ]
+      },
+      "BatchUpdateResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UpdateDictOfAInstanceResponse"
+            }
+          }
+        }
+      },
+      "BatchUpdate": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UpdateDictOfAInstance"
+            }
+          }
+        }
+      },
+      "GRIDDataResponse": {
+        "type": "object",
+        "properties": {
+          "Columns": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Field"
+            }
+          },
+          "Table_TableName": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BatchUpdate"
+            }
+          },
+          "Filter": {
+            "type": "object"
+          }
+        }
+      },
+      "ViewCreateResponse": {
+        "type": "object",
+        "properties": {
+          "Status": {
+            "type": "string"
+          }
+        }
+      },
+      "QueryDefinitionIntermediateDataStructure": {
+        "type": "object",
+        "properties": {}
+      },
+      "DefaultErrorSchema": {
+        "type": "object",
+        "properties": {
+          "args": {
+            "type": "object"
+          },
+          "en_message": {
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "error_code": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id",
+          "error_code"
+        ]
+      },
+      "DefaultErrorSchemas": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "args": {
+            "type": "object"
+          },
+          "error_code": {
+            "type": "string"
+          },
+          "en_message": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "_id",
+          "error_code"
+        ]
+      }
+    },
+    "securitySchemes": {
+      "X-Api-Key": {
+        "type": "apiKey",
+        "name": "X-Api-Key",
+        "in": "header"
+      },
+      "X-Access-Key-Id": {
+        "type": "apiKey",
+        "name": "X-Access-Key-Id",
+        "in": "header"
+      },
+      "X-Access-Key-Secret": {
+        "type": "apiKey",
+        "name": "X-Access-Key-Secret",
+        "in": "header"
+      }
+    },
+    "responses": {
+      "NotAuthorized": {
+        "description": "The client request has not been completed because it lacks valid authentication credentials for the requested resource.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DefaultErrorSchema"
+            }
+          }
+        }
+      },
+      "NotFound": {
+        "description": "Resource Requested is not found",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DefaultErrorSchema"
+            }
+          }
+        }
+      },
+      "Forbidden": {
+        "description": "The server understands the request but refuses to authorize it.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/DefaultErrorSchema"
+            }
+          }
+        }
+      }
+    }
+  }
+}
